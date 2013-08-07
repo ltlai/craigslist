@@ -1,3 +1,15 @@
 <h1>Create Your Post</h1>
 
-<form
+<form action="/posts">
+  Post category: <select name="category">
+    <option value="Apartments">Apartments</option>
+    <option value="For Sale">For Sale</option>
+    <option value="Personals">Personals</option>
+    <option value="Jobs">Jobs</option>
+  </select><br><br>
+  Your email: <input name="email"><br><br>
+  Post title: <input name="title"><br><br>
+  Price (if applicable): <input name="price"><br><br>
+  Post description: <textarea name="description"></textarea><br><br>
+  <input type="submit" value="Create post">
+</form>

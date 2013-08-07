@@ -9,11 +9,15 @@ get '/categories/:id' do
   erb :display_category
 end
 
+get '/posts/new' do
+  erb :create_post
+end
+
 get '/posts/:id' do
   @post = Post.find(params[:id])
   erb :display_post
 end
 
-get '/posts/new' do
-  erb :create_post
+post '/posts' do
+  Post.new()
 end
