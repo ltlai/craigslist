@@ -19,5 +19,14 @@ get '/posts/:id' do
 end
 
 post '/posts' do
-  Post.new()
+  new_post = Post.new(title: params[:title], 
+    category_id: params[:category],
+    reply_email: params[:email],
+    price: params[:price],
+    description: params[:description],
+    secret_key: rand(36**9).to_s(36))
+  p new_post
+  new_post.save
+  @post = Post.last
+  erb :display_post
 end
