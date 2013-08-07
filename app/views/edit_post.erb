@@ -1,0 +1,15 @@
+<h1>Edit Your Post</h1>
+
+<% if @post %>
+  <form action="/posts/<%= @post.secret_key %>" method="post" id="edit">
+    <input type="hidden" name="_method" value="PUT">
+    Email: <input name="email" value="<%= @post.reply_email %>"><br><br>
+    Title: <input name="title" value="<%= @post.title %>"><br><br>
+    Price: <input name="price" value="<%= @post.price %>"><br><br>
+    Description: <textarea name="description"><%= @post.description %></textarea><br><br>
+    <input type="submit" value="Edit post">
+  </form><br>
+  <span><a href="/posts/<%= @post.secret_key %>/delete">Delete post</a></span>
+<% else %>
+  <p>Post not found.</p>
+<% end %>

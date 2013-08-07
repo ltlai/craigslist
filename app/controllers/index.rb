@@ -25,8 +25,34 @@ post '/posts' do
     price: params[:price],
     description: params[:description],
     secret_key: rand(36**9).to_s(36))
-  p new_post
   new_post.save
   @post = Post.last
   erb :display_post
+end
+
+get '/posts/:secret_key/edit' do
+  @post = Post.find_by_secret_key(params[:secret_key])
+  erb :edit_post
+end
+
+put '/posts/:secret_key' do
+  @post = Post.find_by_secret_key(params[:secret_key])
+  @post.update_attributes(
+    reply_email: params[:email], 
+    title: params[:title],
+    price: params[:price], 
+    description: params[:description]
+  )
+  erb :display_post
+end
+
+get '/posts/:secret_key/delete' do
+  @post = Post.find_by_secret_key(params[:secret_key])
+  erb :delete_post
+end
+
+delete '/posts/:secret_key' do
+  post = Post.find_by_secret_key(params[:secret_key])
+  post.destroy
+  redirect '/'
 end

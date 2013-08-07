@@ -1,0 +1,14 @@
+<% if @post %>
+  <p>Are you sure you want to delete the following post?</p>
+  <p><b><%= @post.title %></b></p>
+  <p>Reply to: <%= @post.reply_email %></p>
+  <p>Description:<br>
+    <%= @post.description %></p>
+  <form action="/posts/<%= @post.secret_key %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Yes, Delete It!">
+    <a href="/posts/<%= @post.id %>">Cancel</a>
+  </form>
+<% else %>
+  <p>Post not found.</p>
+<% end %>
